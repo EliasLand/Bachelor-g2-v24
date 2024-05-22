@@ -1,3 +1,5 @@
-# Middleware for digital twin platform
+# Omron TM14 Digital Twin - Development of a Digital Twin platform for an autonomous pick-and-place operation
 
-This is the middleware created to bridge the communication between an Omron TM14 cobot, and a digital twin.
+Middleware created for communication between a Digital Twin and an Omron TM14 cobot. 
+
+Virtual environment of Digital Twin in Unity: https://github.com/MarcusPRobot/TM14-DT-Unity-UiA-BSc2024
