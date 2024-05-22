@@ -1,0 +1,1311 @@
+[
+    {
+        "id": "4d9563aa6caf8b1d",
+        "type": "tab",
+        "label": "Flow 1",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "171a9ca2902718dd",
+        "type": "group",
+        "z": "4d9563aa6caf8b1d",
+        "style": {
+            "stroke": "#999999",
+            "stroke-opacity": "1",
+            "fill": "none",
+            "fill-opacity": "1",
+            "label": true,
+            "label-position": "nw",
+            "color": "#a4a4a4"
+        },
+        "nodes": [
+            "298a20c367487e9b",
+            "1264529f5ad50d33",
+            "1879eb4d2d4e6ffb",
+            "9d1ca9dfc45477c1",
+            "97f4bc34c820cb9a",
+            "d5907b7b1bb8b339",
+            "9f3134d75f4743ac",
+            "79fc12c4d28df33e",
+            "8f2699c99b9d436e",
+            "d677d50673dcb4a3",
+            "3e42cad7a93c0747"
+        ],
+        "x": 54,
+        "y": 19,
+        "w": 1132,
+        "h": 322
+    },
+    {
+        "id": "6a688cc6402c151e",
+        "type": "group",
+        "z": "4d9563aa6caf8b1d",
+        "style": {
+            "stroke": "#999999",
+            "stroke-opacity": "1",
+            "fill": "none",
+            "fill-opacity": "1",
+            "label": true,
+            "label-position": "nw",
+            "color": "#a4a4a4"
+        },
+        "nodes": [
+            "c79ce7c808c00ae8",
+            "227bdc67ba6941ec",
+            "fa3a6ec80aa27ac0"
+        ],
+        "x": 54,
+        "y": 1099,
+        "w": 632,
+        "h": 82
+    },
+    {
+        "id": "95702d3fa326c36b",
+        "type": "group",
+        "z": "4d9563aa6caf8b1d",
+        "style": {
+            "stroke": "#999999",
+            "stroke-opacity": "1",
+            "fill": "none",
+            "fill-opacity": "1",
+            "label": true,
+            "label-position": "nw",
+            "color": "#a4a4a4"
+        },
+        "nodes": [
+            "445631719775df89",
+            "980317612d302e28",
+            "d01846b8c79b4a2d"
+        ],
+        "x": 54,
+        "y": 1199,
+        "w": 392,
+        "h": 142
+    },
+    {
+        "id": "d358e6561984685c",
+        "type": "group",
+        "z": "4d9563aa6caf8b1d",
+        "style": {
+            "stroke": "#999999",
+            "stroke-opacity": "1",
+            "fill": "none",
+            "fill-opacity": "1",
+            "label": true,
+            "label-position": "nw",
+            "color": "#a4a4a4"
+        },
+        "nodes": [
+            "349749ca09c0febb",
+            "b50b3ee03db1a2e7",
+            "f10548b5ba10a91f",
+            "25d1cceb15e59204",
+            "2484b48cb2e9c29e",
+            "9af13bfe7e15dde8",
+            "84fbab33458e9b89",
+            "502704fa61714f17",
+            "a53d7d7d67c55f4b",
+            "f247078aa0053ab6",
+            "aaf91b3f45d255dd",
+            "17cf0fc334cead96",
+            "9cbbb45690a22fbb",
+            "68def8273a4fd513",
+            "6fa7cfcab6d44198",
+            "0a0c1cf81b0b4a42",
+            "eaa4ec581ee733b5",
+            "dc3f99deac966b48",
+            "5d439af50c2b4f26"
+        ],
+        "x": 54,
+        "y": 439,
+        "w": 1252,
+        "h": 262
+    },
+    {
+        "id": "298a20c367487e9b",
+        "type": "ROS2 Type",
+        "z": "4d9563aa6caf8b1d",
+        "g": "171a9ca2902718dd",
+        "ros2pkg": "std_msgs",
+        "ros2message": "String",
+        "x": 160,
+        "y": 120,
+        "wires": [
+            [
+                "1264529f5ad50d33"
+            ]
+        ]
+    },
+    {
+        "id": "1264529f5ad50d33",
+        "type": "Subscriber",
+        "z": "4d9563aa6caf8b1d",
+        "g": "171a9ca2902718dd",
+        "topic": "/cobot_to_unity",
+        "domain": "d125f1eced951db1",
+        "props": [],
+        "selectedtype": "std_msgs/msg/String",
+        "x": 430,
+        "y": 120,
+        "wires": [
+            [
+                "1879eb4d2d4e6ffb"
+            ]
+        ]
+    },
+    {
+        "id": "349749ca09c0febb",
+        "type": "udp in",
+        "z": "4d9563aa6caf8b1d",
+        "g": "d358e6561984685c",
+        "name": "UDP in",
+        "iface": "",
+        "port": "5500",
+        "ipv": "udp4",
+        "multicast": "false",
+        "group": "",
+        "datatype": "utf8",
+        "x": 130,
+        "y": 600,
+        "wires": [
+            [
+                "2484b48cb2e9c29e",
+                "68def8273a4fd513",
+                "5d439af50c2b4f26"
+            ]
+        ]
+    },
+    {
+        "id": "1879eb4d2d4e6ffb",
+        "type": "function",
+        "z": "4d9563aa6caf8b1d",
+        "g": "171a9ca2902718dd",
+        "name": "Object to string",
+        "func": "global.set(\"pushed\", msg.payload)\nvar p = global.get(\"pushed\")\np = JSON.stringify(p)\n\np = p.replace('{\"data\":\"', '')\np = p.replace('\"}', '')\nconsole.log(p)\n\nvar msg1 = {}\n\nmsg1.payload = Buffer.from(p, 'ascii')\n\nreturn msg1",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 680,
+        "y": 120,
+        "wires": [
+            [
+                "3e42cad7a93c0747"
+            ]
+        ]
+    },
+    {
+        "id": "9107f9ab973e8816",
+        "type": "comment",
+        "z": "4d9563aa6caf8b1d",
+        "name": "Cobot and camera to game engine",
+        "info": "",
+        "x": 200,
+        "y": 60,
+        "wires": []
+    },
+    {
+        "id": "b50b3ee03db1a2e7",
+        "type": "Publisher",
+        "z": "4d9563aa6caf8b1d",
+        "g": "d358e6561984685c",
+        "topic": "/unity_to_cobot",
+        "domain": "d125f1eced951db1",
+        "props": [],
+        "selectedtype": "std_msgs/msg/String",
+        "x": 1200,
+        "y": 600,
+        "wires": [
+            [
+                "cf97ac17c1afb0a2"
+            ]
+        ]
+    },
+    {
+        "id": "348a6f53e43e5d6e",
+        "type": "ROS2 Type",
+        "z": "4d9563aa6caf8b1d",
+        "d": true,
+        "ros2pkg": "std_msgs",
+        "ros2message": "String",
+        "x": 160,
+        "y": 860,
+        "wires": [
+            [
+                "eebb48409d1e526c"
+            ]
+        ]
+    },
+    {
+        "id": "eebb48409d1e526c",
+        "type": "Subscriber",
+        "z": "4d9563aa6caf8b1d",
+        "d": true,
+        "topic": "/ArUco_Detect",
+        "domain": "d125f1eced951db1",
+        "props": [],
+        "selectedtype": "std_msgs/msg/String",
+        "x": 390,
+        "y": 860,
+        "wires": [
+            [
+                "17d9770c4aad580f"
+            ]
+        ]
+    },
+    {
+        "id": "17d9770c4aad580f",
+        "type": "debug",
+        "z": "4d9563aa6caf8b1d",
+        "d": true,
+        "name": "debug 10",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 620,
+        "y": 860,
+        "wires": []
+    },
+    {
+        "id": "f12ba10af8b6f4de",
+        "type": "comment",
+        "z": "4d9563aa6caf8b1d",
+        "name": "Test",
+        "info": "",
+        "x": 110,
+        "y": 800,
+        "wires": []
+    },
+    {
+        "id": "c79ce7c808c00ae8",
+        "type": "inject",
+        "z": "4d9563aa6caf8b1d",
+        "g": "6a688cc6402c151e",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "Jeg fungerer",
+        "payloadType": "str",
+        "x": 170,
+        "y": 1140,
+        "wires": [
+            [
+                "fa3a6ec80aa27ac0",
+                "227bdc67ba6941ec"
+            ]
+        ]
+    },
+    {
+        "id": "227bdc67ba6941ec",
+        "type": "debug",
+        "z": "4d9563aa6caf8b1d",
+        "g": "6a688cc6402c151e",
+        "name": "debug 11",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 580,
+        "y": 1140,
+        "wires": []
+    },
+    {
+        "id": "fa3a6ec80aa27ac0",
+        "type": "firebase-out",
+        "z": "4d9563aa6caf8b1d",
+        "g": "6a688cc6402c151e",
+        "name": "",
+        "database": "81400fd585033481",
+        "path": "NRDATA/Test",
+        "pathType": "str",
+        "priority": 1,
+        "queryType": "set",
+        "x": 370,
+        "y": 1140,
+        "wires": []
+    },
+    {
+        "id": "445631719775df89",
+        "type": "s7 out",
+        "z": "4d9563aa6caf8b1d",
+        "g": "95702d3fa326c36b",
+        "endpoint": "a7776ab8aefa0f29",
+        "variable": "Gripper",
+        "name": "",
+        "x": 360,
+        "y": 1240,
+        "wires": []
+    },
+    {
+        "id": "980317612d302e28",
+        "type": "inject",
+        "z": "4d9563aa6caf8b1d",
+        "g": "95702d3fa326c36b",
+        "name": "Open gripper",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "1",
+        "payloadType": "num",
+        "x": 170,
+        "y": 1240,
+        "wires": [
+            [
+                "445631719775df89"
+            ]
+        ]
+    },
+    {
+        "id": "d01846b8c79b4a2d",
+        "type": "inject",
+        "z": "4d9563aa6caf8b1d",
+        "g": "95702d3fa326c36b",
+        "name": "Close Gripper",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "2",
+        "payloadType": "num",
+        "x": 170,
+        "y": 1300,
+        "wires": [
+            [
+                "445631719775df89"
+            ]
+        ]
+    },
+    {
+        "id": "bcaa9d3346084f43",
+        "type": "comment",
+        "z": "4d9563aa6caf8b1d",
+        "name": "Game engine and PLC to gripper and cobot",
+        "info": "Controls gripper from unity admin",
+        "x": 230,
+        "y": 420,
+        "wires": []
+    },
+    {
+        "id": "f10548b5ba10a91f",
+        "type": "s7 out",
+        "z": "4d9563aa6caf8b1d",
+        "g": "d358e6561984685c",
+        "endpoint": "a7776ab8aefa0f29",
+        "variable": "Gripper",
+        "name": "",
+        "x": 640,
+        "y": 480,
+        "wires": []
+    },
+    {
+        "id": "25d1cceb15e59204",
+        "type": "change",
+        "z": "4d9563aa6caf8b1d",
+        "g": "d358e6561984685c",
+        "name": "",
+        "rules": [
+            {
+                "t": "change",
+                "p": "payload",
+                "pt": "msg",
+                "from": "g1",
+                "fromt": "str",
+                "to": "2",
+                "tot": "num"
+            },
+            {
+                "t": "change",
+                "p": "payload",
+                "pt": "msg",
+                "from": "g0",
+                "fromt": "str",
+                "to": "1",
+                "tot": "num"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 460,
+        "y": 540,
+        "wires": [
+            [
+                "f10548b5ba10a91f",
+                "aaf91b3f45d255dd"
+            ]
+        ]
+    },
+    {
+        "id": "2484b48cb2e9c29e",
+        "type": "switch",
+        "z": "4d9563aa6caf8b1d",
+        "g": "d358e6561984685c",
+        "name": "Gripper filter",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "cont",
+                "v": "g",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 290,
+        "y": 540,
+        "wires": [
+            [
+                "25d1cceb15e59204"
+            ]
+        ]
+    },
+    {
+        "id": "9d1ca9dfc45477c1",
+        "type": "ROS2 Type",
+        "z": "4d9563aa6caf8b1d",
+        "g": "171a9ca2902718dd",
+        "ros2pkg": "std_msgs",
+        "ros2message": "String",
+        "x": 160,
+        "y": 180,
+        "wires": [
+            [
+                "97f4bc34c820cb9a"
+            ]
+        ]
+    },
+    {
+        "id": "97f4bc34c820cb9a",
+        "type": "Subscriber",
+        "z": "4d9563aa6caf8b1d",
+        "g": "171a9ca2902718dd",
+        "topic": "/ArUco",
+        "domain": "d125f1eced951db1",
+        "props": [],
+        "selectedtype": "std_msgs/msg/String",
+        "x": 430,
+        "y": 180,
+        "wires": [
+            [
+                "d5907b7b1bb8b339",
+                "9f3134d75f4743ac"
+            ]
+        ]
+    },
+    {
+        "id": "d5907b7b1bb8b339",
+        "type": "function",
+        "z": "4d9563aa6caf8b1d",
+        "g": "171a9ca2902718dd",
+        "name": "Object to string",
+        "func": "global.set(\"pushed\", msg.payload)\nvar p = global.get(\"pushed\")\np = JSON.stringify(p)\n\n//p = \"hei verden!\"\n//p = p.replace('hei', 'hade')\n\np = p.replace('{\"data\":\"', '')\np = p.replace('\"}', '')\nconsole.log(p)\n\nvar msg1 = {}\n\n//msg1.payload =  p\nmsg1.payload = Buffer.from(p, 'ascii')\n//let byteArray = Array.prototype.slice.call(buffer, 0)\n\nreturn msg1",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 680,
+        "y": 180,
+        "wires": [
+            [
+                "3e42cad7a93c0747"
+            ]
+        ]
+    },
+    {
+        "id": "9f3134d75f4743ac",
+        "type": "function",
+        "z": "4d9563aa6caf8b1d",
+        "g": "171a9ca2902718dd",
+        "name": "String to PLC",
+        "func": "// Access the data property of the msg.payload object\nlet dataString = msg.payload.data;\n\n// Split the string by the '#' character\nlet parts = dataString.split('#');\n\n// Initialize messages for each float value\nlet msg1 = { payload: parseFloat(parts[0]) };\nlet msg2 = { payload: parseFloat(parts[1]) };\nlet msg3 = { payload: Math.abs(parseFloat(parts[2])) }; // Using Math.abs() for the absolute value of parts[2]\n\n// Return the array of messages\nreturn [msg1, msg2, msg3];",
+        "outputs": 3,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 670,
+        "y": 240,
+        "wires": [
+            [
+                "79fc12c4d28df33e"
+            ],
+            [
+                "8f2699c99b9d436e"
+            ],
+            [
+                "d677d50673dcb4a3"
+            ]
+        ]
+    },
+    {
+        "id": "79fc12c4d28df33e",
+        "type": "s7 out",
+        "z": "4d9563aa6caf8b1d",
+        "g": "171a9ca2902718dd",
+        "endpoint": "a7776ab8aefa0f29",
+        "variable": "Box Coords x",
+        "name": "X",
+        "x": 990,
+        "y": 180,
+        "wires": []
+    },
+    {
+        "id": "8f2699c99b9d436e",
+        "type": "s7 out",
+        "z": "4d9563aa6caf8b1d",
+        "g": "171a9ca2902718dd",
+        "endpoint": "a7776ab8aefa0f29",
+        "variable": "Box Coords y",
+        "name": "Y",
+        "x": 990,
+        "y": 240,
+        "wires": []
+    },
+    {
+        "id": "d677d50673dcb4a3",
+        "type": "s7 out",
+        "z": "4d9563aa6caf8b1d",
+        "g": "171a9ca2902718dd",
+        "endpoint": "a7776ab8aefa0f29",
+        "variable": "Box Coords w",
+        "name": "Angle",
+        "x": 990,
+        "y": 300,
+        "wires": []
+    },
+    {
+        "id": "9af13bfe7e15dde8",
+        "type": "s7 in",
+        "z": "4d9563aa6caf8b1d",
+        "g": "d358e6561984685c",
+        "endpoint": "a7776ab8aefa0f29",
+        "mode": "all",
+        "variable": "",
+        "diff": false,
+        "name": "PLC",
+        "x": 130,
+        "y": 660,
+        "wires": [
+            [
+                "84fbab33458e9b89"
+            ]
+        ]
+    },
+    {
+        "id": "84fbab33458e9b89",
+        "type": "function",
+        "z": "4d9563aa6caf8b1d",
+        "g": "d358e6561984685c",
+        "name": "Configure data",
+        "func": "// Extract the values for 'Box Coords x', 'Box Coords y', and 'Box Coords w'\nlet X = msg.payload['X'];\nlet Y = msg.payload['Y'];\nlet Z = msg.payload['Z'];\nlet Rx = msg.payload['Rx'];\nlet Ry = msg.payload['Ry'];\nlet Rz = msg.payload['Rz'];\n\n// Check if we have all the required coordinates\nif (X !== undefined && Y !== undefined && Z !== undefined) {\n    // Format the coordinates into the desired string format \"x#y#w\"\n    msg.payload = X + \"#\" + Y + \"#\" + Z + '#' + Rx + '#' + Ry + '#' + Rz;\n    return msg;  // Send the formatted message to the next node\n} else {\n    // If any of the coordinates are undefined, log a warning message and don't send anything onwards\n    node.warn(\"Some Box Coords properties are undefined.\");\n    return null;\n}",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 300,
+        "y": 660,
+        "wires": [
+            [
+                "a53d7d7d67c55f4b"
+            ]
+        ]
+    },
+    {
+        "id": "502704fa61714f17",
+        "type": "change",
+        "z": "4d9563aa6caf8b1d",
+        "g": "d358e6561984685c",
+        "name": "Topic: UDP",
+        "rules": [
+            {
+                "t": "set",
+                "p": "topic",
+                "pt": "msg",
+                "to": "UDP",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 470,
+        "y": 600,
+        "wires": [
+            [
+                "f247078aa0053ab6"
+            ]
+        ]
+    },
+    {
+        "id": "a53d7d7d67c55f4b",
+        "type": "change",
+        "z": "4d9563aa6caf8b1d",
+        "g": "d358e6561984685c",
+        "name": "Topic: PLC",
+        "rules": [
+            {
+                "t": "set",
+                "p": "topic",
+                "pt": "msg",
+                "to": "PLC",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 470,
+        "y": 660,
+        "wires": [
+            [
+                "f247078aa0053ab6"
+            ]
+        ]
+    },
+    {
+        "id": "f247078aa0053ab6",
+        "type": "function",
+        "z": "4d9563aa6caf8b1d",
+        "g": "d358e6561984685c",
+        "name": "Admin",
+        "func": "let adminMode = context.get('adminMode') || false;\n\nif (msg.topic === 'UDP') {\n    if (msg.payload === 'admin1') {\n        adminMode = true;\n        context.set('adminMode', adminMode);\n        return null; \n    } else if (msg.payload === 'admin2') {\n        adminMode = false;\n        context.set('adminMode', adminMode);\n        return null;\n    }\n}\n\nif (msg.topic === 'PLC') {\n    if (!adminMode) {\n        return msg;\n    } else {\n        return null;\n    }\n}\n\nif (msg.topic === 'UDP') {\n    if (adminMode) {\n        return msg;\n    } else {\n        return null;\n    }\n}\n\nreturn null;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 630,
+        "y": 600,
+        "wires": [
+            [
+                "9cbbb45690a22fbb"
+            ]
+        ]
+    },
+    {
+        "id": "aaf91b3f45d255dd",
+        "type": "delay",
+        "z": "4d9563aa6caf8b1d",
+        "g": "d358e6561984685c",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "1",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 640,
+        "y": 540,
+        "wires": [
+            [
+                "17cf0fc334cead96"
+            ]
+        ]
+    },
+    {
+        "id": "17cf0fc334cead96",
+        "type": "function",
+        "z": "4d9563aa6caf8b1d",
+        "g": "d358e6561984685c",
+        "name": "Gripper successful",
+        "func": "msg.payload = \"READY\"\n\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 810,
+        "y": 540,
+        "wires": [
+            [
+                "dc3f99deac966b48"
+            ]
+        ]
+    },
+    {
+        "id": "9cbbb45690a22fbb",
+        "type": "rbe",
+        "z": "4d9563aa6caf8b1d",
+        "g": "d358e6561984685c",
+        "name": "",
+        "func": "rbe",
+        "gap": "",
+        "start": "",
+        "inout": "out",
+        "septopics": true,
+        "property": "payload",
+        "topi": "topic",
+        "x": 750,
+        "y": 600,
+        "wires": [
+            [
+                "6fa7cfcab6d44198"
+            ]
+        ]
+    },
+    {
+        "id": "68def8273a4fd513",
+        "type": "switch",
+        "z": "4d9563aa6caf8b1d",
+        "g": "d358e6561984685c",
+        "name": "Position filter",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "cont",
+                "v": "#",
+                "vt": "str"
+            },
+            {
+                "t": "cont",
+                "v": "admin",
+                "vt": "str"
+            }
+        ],
+        "checkall": "false",
+        "repair": false,
+        "outputs": 2,
+        "x": 290,
+        "y": 600,
+        "wires": [
+            [
+                "502704fa61714f17"
+            ],
+            [
+                "502704fa61714f17"
+            ]
+        ]
+    },
+    {
+        "id": "3d2f2e89ca3e7474",
+        "type": "ROS2 Type",
+        "z": "4d9563aa6caf8b1d",
+        "d": true,
+        "ros2pkg": "std_msgs",
+        "ros2message": "String",
+        "x": 160,
+        "y": 920,
+        "wires": [
+            [
+                "92fad87c6be8d015"
+            ]
+        ]
+    },
+    {
+        "id": "92fad87c6be8d015",
+        "type": "Publisher",
+        "z": "4d9563aa6caf8b1d",
+        "d": true,
+        "topic": "/noe_greier",
+        "domain": "d125f1eced951db1",
+        "props": [],
+        "selectedtype": "std_msgs/msg/String",
+        "x": 380,
+        "y": 920,
+        "wires": [
+            [
+                "01071103bfa4c7b2"
+            ]
+        ]
+    },
+    {
+        "id": "01071103bfa4c7b2",
+        "type": "debug",
+        "z": "4d9563aa6caf8b1d",
+        "d": true,
+        "name": "debug 12",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 620,
+        "y": 920,
+        "wires": []
+    },
+    {
+        "id": "cf97ac17c1afb0a2",
+        "type": "debug",
+        "z": "4d9563aa6caf8b1d",
+        "name": "debug 14",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1360,
+        "y": 600,
+        "wires": []
+    },
+    {
+        "id": "6fa7cfcab6d44198",
+        "type": "switch",
+        "z": "4d9563aa6caf8b1d",
+        "g": "d358e6561984685c",
+        "name": "",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "0#0#0#0#0#0",
+                "vt": "str"
+            },
+            {
+                "t": "cont",
+                "v": "#",
+                "vt": "str"
+            }
+        ],
+        "checkall": "false",
+        "repair": false,
+        "outputs": 2,
+        "x": 870,
+        "y": 600,
+        "wires": [
+            [],
+            [
+                "0a0c1cf81b0b4a42"
+            ]
+        ]
+    },
+    {
+        "id": "0a0c1cf81b0b4a42",
+        "type": "ROS2 Type",
+        "z": "4d9563aa6caf8b1d",
+        "g": "d358e6561984685c",
+        "ros2pkg": "std_msgs",
+        "ros2message": "String",
+        "x": 1020,
+        "y": 600,
+        "wires": [
+            [
+                "b50b3ee03db1a2e7"
+            ]
+        ]
+    },
+    {
+        "id": "eaa4ec581ee733b5",
+        "type": "inject",
+        "z": "4d9563aa6caf8b1d",
+        "g": "d358e6561984685c",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "yes",
+        "payloadType": "str",
+        "x": 790,
+        "y": 480,
+        "wires": [
+            [
+                "17cf0fc334cead96"
+            ]
+        ]
+    },
+    {
+        "id": "16f952fab5051d56",
+        "type": "udp in",
+        "z": "4d9563aa6caf8b1d",
+        "d": true,
+        "name": "UDP in",
+        "iface": "",
+        "port": "5500",
+        "ipv": "udp4",
+        "multicast": "false",
+        "group": "",
+        "datatype": "utf8",
+        "x": 110,
+        "y": 1680,
+        "wires": [
+            [
+                "9a8b544f9ffbe3c6"
+            ]
+        ]
+    },
+    {
+        "id": "f8fba96e0dcbcbf6",
+        "type": "udp out",
+        "z": "4d9563aa6caf8b1d",
+        "d": true,
+        "name": "",
+        "addr": "192.168.8.155",
+        "iface": "",
+        "port": "51815",
+        "ipv": "udp4",
+        "outport": "5500",
+        "base64": false,
+        "multicast": "false",
+        "x": 810,
+        "y": 1620,
+        "wires": []
+    },
+    {
+        "id": "9a8b544f9ffbe3c6",
+        "type": "switch",
+        "z": "4d9563aa6caf8b1d",
+        "d": true,
+        "name": "",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "cont",
+                "v": "#t",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 250,
+        "y": 1680,
+        "wires": [
+            [
+                "2474f67616a69661",
+                "0a67bd381a11133c"
+            ]
+        ]
+    },
+    {
+        "id": "4e1092fcea0c39db",
+        "type": "inject",
+        "z": "4d9563aa6caf8b1d",
+        "d": true,
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "#t#19.29.92.10",
+        "payloadType": "str",
+        "x": 800,
+        "y": 1520,
+        "wires": [
+            [
+                "f8fba96e0dcbcbf6"
+            ]
+        ]
+    },
+    {
+        "id": "bcc3a0a155434dcf",
+        "type": "ROS2 Type",
+        "z": "4d9563aa6caf8b1d",
+        "d": true,
+        "ros2pkg": "std_msgs",
+        "ros2message": "String",
+        "x": 140,
+        "y": 1620,
+        "wires": [
+            [
+                "cffec2704d1b2c25"
+            ]
+        ]
+    },
+    {
+        "id": "2474f67616a69661",
+        "type": "ROS2 Type",
+        "z": "4d9563aa6caf8b1d",
+        "d": true,
+        "ros2pkg": "std_msgs",
+        "ros2message": "String",
+        "x": 440,
+        "y": 1680,
+        "wires": [
+            [
+                "6f9a77ddb20f8958"
+            ]
+        ]
+    },
+    {
+        "id": "296ccba0a2ada135",
+        "type": "debug",
+        "z": "4d9563aa6caf8b1d",
+        "d": true,
+        "name": "debug 15",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 840,
+        "y": 1680,
+        "wires": []
+    },
+    {
+        "id": "0a67bd381a11133c",
+        "type": "debug",
+        "z": "4d9563aa6caf8b1d",
+        "d": true,
+        "name": "debug 16",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 420,
+        "y": 1740,
+        "wires": []
+    },
+    {
+        "id": "cffec2704d1b2c25",
+        "type": "Subscriber",
+        "z": "4d9563aa6caf8b1d",
+        "d": true,
+        "topic": "/input_delay",
+        "domain": "d125f1eced951db1",
+        "props": [],
+        "selectedtype": "std_msgs/msg/String",
+        "x": 350,
+        "y": 1620,
+        "wires": [
+            [
+                "5f9f758c88e70673"
+            ]
+        ]
+    },
+    {
+        "id": "5f9f758c88e70673",
+        "type": "function",
+        "z": "4d9563aa6caf8b1d",
+        "d": true,
+        "name": "Object to string",
+        "func": "global.set(\"pushed\", msg.payload)\nvar p = global.get(\"pushed\")\np = JSON.stringify(p)\n\np = p.replace('{\"data\":\"', '')\np = p.replace('\"}', '')\nconsole.log(p)\n\nvar msg1 = {}\n\nmsg1.payload = Buffer.from(p, 'ascii')\n\nreturn msg1",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 580,
+        "y": 1620,
+        "wires": [
+            [
+                "f8fba96e0dcbcbf6"
+            ]
+        ]
+    },
+    {
+        "id": "6f9a77ddb20f8958",
+        "type": "Publisher",
+        "z": "4d9563aa6caf8b1d",
+        "d": true,
+        "topic": "/input_delay_back",
+        "domain": "d125f1eced951db1",
+        "props": [],
+        "selectedtype": "std_msgs/msg/String",
+        "x": 640,
+        "y": 1680,
+        "wires": [
+            [
+                "296ccba0a2ada135"
+            ]
+        ]
+    },
+    {
+        "id": "3e42cad7a93c0747",
+        "type": "udp out",
+        "z": "4d9563aa6caf8b1d",
+        "g": "171a9ca2902718dd",
+        "name": "",
+        "addr": "192.168.8.123",
+        "iface": "",
+        "port": "51815",
+        "ipv": "udp4",
+        "outport": "5500",
+        "base64": false,
+        "multicast": "false",
+        "x": 1050,
+        "y": 60,
+        "wires": []
+    },
+    {
+        "id": "dc3f99deac966b48",
+        "type": "udp out",
+        "z": "4d9563aa6caf8b1d",
+        "g": "d358e6561984685c",
+        "name": "",
+        "addr": "192.168.8.123",
+        "iface": "",
+        "port": "51815",
+        "ipv": "udp4",
+        "outport": "5500",
+        "base64": false,
+        "multicast": "false",
+        "x": 1030,
+        "y": 480,
+        "wires": []
+    },
+    {
+        "id": "5d439af50c2b4f26",
+        "type": "debug",
+        "z": "4d9563aa6caf8b1d",
+        "g": "d358e6561984685c",
+        "name": "debug 17",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 280,
+        "y": 480,
+        "wires": []
+    },
+    {
+        "id": "d125f1eced951db1",
+        "type": "dds-settings",
+        "domain": "0"
+    },
+    {
+        "id": "81400fd585033481",
+        "type": "database-config",
+        "name": "Node-red_Fire-base",
+        "authType": "email",
+        "claims": {},
+        "createUser": false,
+        "useClaims": false
+    },
+    {
+        "id": "a7776ab8aefa0f29",
+        "type": "s7 endpoint",
+        "transport": "iso-on-tcp",
+        "address": "192.168.5.200",
+        "port": "102",
+        "rack": "0",
+        "slot": "1",
+        "localtsaphi": "01",
+        "localtsaplo": "00",
+        "remotetsaphi": "01",
+        "remotetsaplo": "00",
+        "connmode": "rack-slot",
+        "adapter": "",
+        "busaddr": "2",
+        "cycletime": "100",
+        "timeout": "1500",
+        "name": "",
+        "vartable": [
+            {
+                "addr": "DB110,W6",
+                "name": "Gripper"
+            },
+            {
+                "addr": "DB400,W0",
+                "name": "Box Coords x"
+            },
+            {
+                "addr": "DB400,W2",
+                "name": "Box Coords y"
+            },
+            {
+                "addr": "DB400,W4",
+                "name": "Box Coords w"
+            },
+            {
+                "addr": "DB200,R0",
+                "name": "X"
+            },
+            {
+                "addr": "DB200,R4",
+                "name": "Y"
+            },
+            {
+                "addr": "DB200,R8",
+                "name": "Z"
+            },
+            {
+                "addr": "DB200,R12",
+                "name": "Rx"
+            },
+            {
+                "addr": "DB200,R16",
+                "name": "Ry"
+            },
+            {
+                "addr": "DB200,R20",
+                "name": "Rz"
+            }
+        ]
+    }
+]
